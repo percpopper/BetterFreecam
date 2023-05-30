@@ -34,7 +34,6 @@ void GetViewPoint(ULocalPlayer* thisLocalPlayer, FMinimalViewInfo* OutViewInfo, 
 			}
 
 			OutViewInfo->Location = NewLocation;
-			OutViewInfo->Rotation = CameraRotation;
 		}
 		else
 		{
