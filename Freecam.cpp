@@ -2,21 +2,22 @@
 void(*OGetViewPoint)(ULocalPlayer*, FMinimalViewInfo*, EStereoscopicPass) = nullptr;
 void GetViewPoint(ULocalPlayer* thisLocalPlayer, FMinimalViewInfo* OutViewInfo, EStereoscopicPass StereoPass)
 {
-  // Call original function setting OutViewInfo (Before modifying it)
-  OGetViewPoint(thisLocalPlayer, OutViewInfo, StereoPass);
+	// Call original function setting OutViewInfo (Before modifying it)
+	OGetViewPoint(thisLocalPlayer, OutViewInfo, StereoPass);
 
 	static FVector NewLocation;
 	if (bFreecam)
 	{
 		if (PlayerController->IsInputKeyDown(FreecamHotkey))
-		{
-
+		{			
 			PlayerController->SetIgnoreMoveInput(true);
 
 			if (NewLocation == FVector(0, 0, 0))
 			{
 				NewLocation = OutViewInfo->Location;
 			}
+			
+			FRotator CameraRotation = OutViewInfo->Rotation;
 
 			FVector MoveDirection(0, 0, 0);
 			if (PlayerController->IsInputKeyDown(WFKey)) MoveDirection.X += fcSpeed;
